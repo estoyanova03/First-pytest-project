@@ -11,7 +11,7 @@ def test2_lambdatest_ecommerce():
     dirver.maximize_window()
     dirver.get("https://ecommerce-playground.lambdatest.io/")
     print("Title: ", dirver.title)
-
+#lknkl
 def testRexWebsite():
     dirver = webdriver.Chrome()
     dirver.maximize_window()
