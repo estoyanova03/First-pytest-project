@@ -10,3 +10,8 @@ def test_search_lambdatest_ecommerce():
     driver.find_element(By.XPATH, "//button[text()='Search']").click()
     search_value = driver.find_element(By.XPATH, "//h1[contains(text(),'Search')]").text # selenium method to get the information
     assert "iPhone" in search_value
+
+def test_add_to_cart():
+    result = 1
+    print("Add to cart")
+    assert result == 3
