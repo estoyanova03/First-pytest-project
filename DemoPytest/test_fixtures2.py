@@ -4,7 +4,12 @@ from selenium.webdriver.common.by import By
 
 driver = webdriver.Chrome()
 
-@pytest.fixture()
+@pytest.fixture(autouse=True)
+def start_automatic_fixture():
+    print("Start with automatic fixture")
+
+@pytest.fixture(scope="function")
+
 def setup_teardown():
     driver.get("https://ecommerce-playground.lambdatest.io/index.php?route=account/login")
     driver.find_element(By.ID, "input-email")\
@@ -17,11 +22,17 @@ def setup_teardown():
     driver.find_element(By.PARTIAL_LINK_TEXT, "Logout").click()
     print("Logout")
 
-def test1_order_history_title(setup_teardown):
+@pytest.mark.usefixtures("setup_teardown")
+def test1_order_history_title():
     driver.find_element(By.PARTIAL_LINK_TEXT, "Order").click()
     assert driver.title == "Order History"
     print("Test 1 Is Complete")
 
+@pytest.mark.usefixtures("setup_teardown")
+def test2_change_password_title():
+    driver.find_element(By.PARTIAL_LINK_TEXT, "Password").click()
+    assert driver.title == "Change Password"
+    print("Test 2 Is Complete")
 
     
     
